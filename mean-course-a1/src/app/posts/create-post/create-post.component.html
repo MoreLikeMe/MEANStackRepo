@@ -1,10 +1,8 @@
-<h3>Add Your Post</h3>
-<hr>
+<mat-toolbar-row>Add Your Post</mat-toolbar-row>
 <mat-card>
 <mat-form-field>
   <textarea matInput rows="10" [(ngModel)]="enValue"></textarea>
 </mat-form-field>
-<hr>
-<button mat-raised-button color="warn" (click)="addNewPostClick()">Post</button>
+<button mat-raised-button color="accent" (click)="addNewPostClick()">Post</button>
 </mat-card>
 <p>{{ newPost }}</p>
