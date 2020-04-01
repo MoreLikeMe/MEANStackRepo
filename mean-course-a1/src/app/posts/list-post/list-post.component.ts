@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Post } from '../post.model';
 
 @Component({
   selector: 'app-list-post',
@@ -8,9 +10,6 @@ import { Component } from '@angular/core';
 
 export class listPostComponent{
 
-  posts=[
-    {title: "First Post", content: "Hello guyss.. This is Joy"},
-    {title: "Second Post", content: "I work in TCS. is there anybody workingig in TCS??"}
-  ];
+  @Input() posts: Post[]=[];
   //posts = [];
 }

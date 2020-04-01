@@ -1,5 +1,5 @@
 <app-header></app-header>
 <main>
-<app-create-post></app-create-post>
-<app-list-post></app-list-post>
+<app-create-post (postEventEmitter)="onCreatePost($event)"></app-create-post>
+<app-list-post [(posts)]="storedPosts"></app-list-post>
 </main>

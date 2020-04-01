@@ -1,7 +1,10 @@
 <mat-toolbar-row>Add Your Post</mat-toolbar-row>
 <mat-card>
 <mat-form-field>
-  <textarea matInput rows="10" [(ngModel)]="enValue"></textarea>
+  <input matInput input="text" [(ngModel)]="tiValue" placeholder="Type Title Here...">
+</mat-form-field>
+<mat-form-field>
+  <textarea matInput rows="10" [(ngModel)]="enValue" placeholder="Type Post Here..."></textarea>
 </mat-form-field>
 <button mat-raised-button color="accent" (click)="addNewPostClick()">Post</button>
 </mat-card>
