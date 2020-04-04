@@ -1,11 +1,14 @@
 <mat-toolbar-row>Add Your Post</mat-toolbar-row>
 <mat-card>
+<form (submit)="addNewPostClick(postForm)" #postForm="ngForm">
 <mat-form-field>
-  <input matInput input="text" [(ngModel)]="tiValue" placeholder="Type Title Here...">
+  <input required matInput input="text" name="title" ngModel placeholder="Type Title Here..." #title="ngModel">
+  <mat-error *ngIf="title.invalid">Please add title</mat-error>
 </mat-form-field>
 <mat-form-field>
-  <textarea matInput rows="10" [(ngModel)]="enValue" placeholder="Type Post Here..."></textarea>
+  <textarea required matInput rows="10" name="content" ngModel placeholder="Type Post Here..." #content="ngModel"></textarea>
+  <mat-error *ngIf="content.invalid">Please add content</mat-error>
 </mat-form-field>
-<button mat-raised-button color="accent" (click)="addNewPostClick()">Post</button>
+<button mat-raised-button color="accent" type="submit">Post</button>
+</form>
 </mat-card>
-<p>{{ newPost }}</p>
