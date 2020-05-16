@@ -1,36 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const Post = require('./model/post');
+const Post = require('../model/post');
 
-const app = express();
+const express = require("express");
 
-const postRoutes = require('./routes/posts');
+const router = express.Router();
 
-const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/node-angular')
-  .then(() => {
-    console.log("Connection Established");
-  })
-  .catch(() =>{
-    console.log("Connection Failed");
-  })
-/*app.use((req,res,next) =>{
-  console.log('First middleware');
-  next();
-});*/
-app.use(bodyParser.json())
-app.use((req,res,next) =>{
-  res.setHeader("Access-Control-Allow-Origin",
-  "*");
-  res.setHeader("Access-Control-Allow-Headers",
-  "Origin,X-Requested-With,Content-Type,Access");
-  res.setHeader("Access-Control-Allow-Methods",
-  "POST,GET,PATCH,PUT,DELETE");
-  next();
-})
-
-app.post('/api/post',(req,res,next) =>{
+router.post("",(req,res,next) =>{
   const post = new Post({
     title : req.body.title,
     content: req.body.content
@@ -45,7 +20,7 @@ app.post('/api/post',(req,res,next) =>{
 
 })
 
-app.get('/api/post/:id', (req,res,next) => {
+router.get('/:id', (req,res,next) => {
     Post.findById(req.params.id).then(post => {
       if(post){
         res.status(200).json(post);
@@ -55,7 +30,7 @@ app.get('/api/post/:id', (req,res,next) => {
     })
 });
 
-app.put('/api/post/:id', (req,res,next) => {
+router.put('/:id', (req,res,next) => {
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
@@ -69,7 +44,7 @@ app.put('/api/post/:id', (req,res,next) => {
 
 })
 
-app.delete('/api/post/:id', (req,res,next) =>{
+router.delete('/:id', (req,res,next) =>{
 
   Post.deleteOne({
     _id: req.params.id
@@ -83,7 +58,7 @@ app.delete('/api/post/:id', (req,res,next) =>{
 })
 
 
-app.use('/api/post', (req,res,next) =>{
+router.use("", (req,res,next) =>{
   /*postList = [
     {
       id: 'hiuj1234',
@@ -111,6 +86,5 @@ app.use('/api/post', (req,res,next) =>{
     })*/
 });
 
-app.use("/api/post", postRoutes);
 
-module.exports = app;
+module.exports = router;
